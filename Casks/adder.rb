@@ -34,8 +34,8 @@ cask "adder" do
   binary "adder"
 
   postflight_steps do
-    if OS.mac?
-      system_command "/usr/bin/xattr", args: ["-dr", "com.apple.quarantine", "#{staged_path}/adder"]
+    on_macos do
+      run "/usr/bin/xattr", args: ["-dr", "com.apple.quarantine", "{{staged_path}}/adder"]
     end
   end
 
